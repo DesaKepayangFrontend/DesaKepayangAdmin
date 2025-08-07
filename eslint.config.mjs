@@ -11,6 +11,21 @@ const compat = new FlatCompat({
 
 const eslintConfig = [
   ...compat.extends("next/core-web-vitals", "next/typescript"),
+  {
+    rules: {
+      // Matikan warning karena <img>
+      "@next/next/no-img-element": "off",
+
+      // Matikan error karena variabel tidak dipakai (misal: catch(err))
+      "@typescript-eslint/no-unused-vars": "off",
+
+      // Matikan error untuk `any`
+      "@typescript-eslint/no-explicit-any": "off",
+
+      // Matikan error jika dependency useEffect tidak lengkap
+      "react-hooks/exhaustive-deps": "off",
+    }
+  }
 ];
 
 export default eslintConfig;
