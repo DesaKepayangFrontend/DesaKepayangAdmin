@@ -10,6 +10,7 @@ import {
   NewspaperIcon,
   ChatBubbleLeftRightIcon,
   IdentificationIcon,
+  MegaphoneIcon,
 } from '@heroicons/react/24/outline';
 
 // Lazy load halaman
@@ -89,7 +90,7 @@ const PanelAdminPage = () => {
     { id: 'visi-misi', label: 'Visi Misi', icon: LightBulbIcon },
     { id: 'struktur', label: 'Struktur', icon: BuildingOfficeIcon },
     { id: 'berita', label: 'Berita', icon: NewspaperIcon },
-    { id: 'kata-sambutan', label: 'Kata Sambutan', icon: ChatBubbleLeftRightIcon },
+    { id: 'kata-sambutan', label: 'Kata Sambutan', icon: MegaphoneIcon },
     { id: 'jumlahkk', label: 'Jumlah KK', icon: IdentificationIcon },
     { id: 'komentar', label: 'Komentar', icon: ChatBubbleLeftRightIcon },
   ];
