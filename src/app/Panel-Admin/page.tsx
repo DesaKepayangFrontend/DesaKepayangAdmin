@@ -42,6 +42,25 @@ const PanelAdminPage = () => {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
+  useEffect(() => {
+    const socket = new WebSocket("wss://desakepayangbackend-production.up.railway.app/ws");
+
+    socket.onopen = () => {
+      console.log("✅ Connected");
+      socket.send("Halo dari frontend");
+    };
+
+    socket.onmessage = (event) => {
+      console.log("📢 Pesan dari server:", event.data);
+    };
+
+    socket.onclose = () => {
+      console.log("❌ Disconnected");
+    };
+
+    return () => socket.close();
+  }, []);
+
   const handleLogout = async () => {
     try {
       const token = localStorage.getItem('token');
@@ -97,9 +116,8 @@ const PanelAdminPage = () => {
       )}
 
       <div
-        className={`fixed md:relative inset-y-0 left-0 w-64 bg-gradient-to-b from-blue-700 to-indigo-800 text-white shadow-lg transform transition-transform duration-300 ease-in-out z-50 ${
-          isSidebarOpen ? 'translate-x-0' : '-translate-x-full'
-        } md:translate-x-0`}
+        className={`fixed md:relative inset-y-0 left-0 w-64 bg-gradient-to-b from-blue-700 to-indigo-800 text-white shadow-lg transform transition-transform duration-300 ease-in-out z-50 ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full'
+          } md:translate-x-0`}
       >
         <div className="p-5 border-b border-indigo-500 flex justify-between items-center">
           <h1 className="text-xl font-bold">Admin Panel</h1>
@@ -118,9 +136,8 @@ const PanelAdminPage = () => {
                 setActiveMenu(item.id as Menu);
                 if (windowWidth < 768) setIsSidebarOpen(false);
               }}
-              className={`w-full text-left px-5 py-3 transition-colors duration-200 hover:bg-indigo-600 flex items-center ${
-                activeMenu === item.id ? 'bg-indigo-600' : ''
-              }`}
+              className={`w-full text-left px-5 py-3 transition-colors duration-200 hover:bg-indigo-600 flex items-center ${activeMenu === item.id ? 'bg-indigo-600' : ''
+                }`}
             >
               <item.icon className="h-5 w-5 mr-3" />
               {item.label}
