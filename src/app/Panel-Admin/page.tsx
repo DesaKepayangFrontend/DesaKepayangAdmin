@@ -11,6 +11,7 @@ import {
   ChatBubbleLeftRightIcon,
   IdentificationIcon,
   MegaphoneIcon,
+  UsersIcon
 } from '@heroicons/react/24/outline';
 
 // Lazy load halaman
@@ -22,8 +23,9 @@ const AdminPage = lazy(() => import('./Admin/page'));
 const AdminProfile = lazy(() => import('./Profile/page'));
 const JumlahKKPage = lazy(() => import('./JumlahKK/page'));
 const KomentarPage = lazy(() => import('./Komentar/page'));
+const RTRWPage = lazy(() => import('./RTRW/page'));
 
-type Menu = 'dashboard' | 'admin' | 'visi-misi' | 'struktur' | 'berita' | 'kata-sambutan' | 'jumlahkk' | 'komentar';
+type Menu = 'dashboard' | 'admin' | 'visi-misi' | 'struktur' | 'berita' | 'kata-sambutan' | 'jumlahkk' | 'komentar' |'rtrw';
 
 const PanelAdminPage = () => {
   const router = useRouter();
@@ -93,6 +95,7 @@ const PanelAdminPage = () => {
     { id: 'kata-sambutan', label: 'Kata Sambutan', icon: MegaphoneIcon },
     { id: 'jumlahkk', label: 'Jumlah KK', icon: IdentificationIcon },
     { id: 'komentar', label: 'Komentar', icon: ChatBubbleLeftRightIcon },
+    { id: 'rtrw', label: 'RT dan RW', icon: UsersIcon },
   ];
 
   return (
@@ -178,9 +181,10 @@ const PanelAdminPage = () => {
           {activeMenu === 'dashboard' && <AdminProfile />}
           {activeMenu === 'jumlahkk' && <JumlahKKPage />}
           {activeMenu === 'komentar' && <KomentarPage />}
+          {activeMenu === 'rtrw' && <RTRWPage />}
 
           {/* Default: placeholder layout untuk menu lainnya */}
-          {!['struktur', 'berita', 'visi-misi', 'kata-sambutan', 'admin', 'dashboard', 'jumlahkk', 'komentar'].includes(activeMenu) && (
+          {!['struktur', 'berita', 'visi-misi', 'kata-sambutan', 'admin', 'dashboard', 'jumlahkk', 'komentar', 'rtrw'].includes(activeMenu) && (
             <div className="bg-white rounded-xl shadow-lg p-6 md:p-8 max-w-4xl">
               <div className="flex justify-between items-start mb-6">
                 <div>

@@ -67,7 +67,7 @@ const BeritaPage = () => {
       setEditMode(true)
       setCurrentBerita(berita)
       setFormData({ judul: berita.Judul, deskripsi: berita.Deskripsi, tanggal: berita.Tanggal })
-      setFotoPreview(`${baseURL}/${berita.Foto}`)
+      setFotoPreview(berita.Foto)
     } else {
       setEditMode(false)
       setCurrentBerita(null)
@@ -196,7 +196,7 @@ const BeritaPage = () => {
                         <td className="py-4 px-4">
                           <div className="w-16 h-16 relative">
                             <Image
-                              src={`${baseURL}/${b.Foto}`}
+                              src={b.Foto}
                               alt={b.Judul}
                               layout="fill"
                               objectFit="cover"
