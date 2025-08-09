@@ -11,7 +11,8 @@ import {
   ChatBubbleLeftRightIcon,
   IdentificationIcon,
   MegaphoneIcon,
-  UsersIcon
+  ShieldCheckIcon,
+  MapIcon
 } from '@heroicons/react/24/outline';
 
 // Lazy load halaman
@@ -24,8 +25,9 @@ const AdminProfile = lazy(() => import('./Profile/page'));
 const JumlahKKPage = lazy(() => import('./JumlahKK/page'));
 const KomentarPage = lazy(() => import('./Komentar/page'));
 const RTRWPage = lazy(() => import('./RTRW/page'));
+const PendudukPage = lazy(() => import('./Penduduk/page'));
 
-type Menu = 'dashboard' | 'admin' | 'visi-misi' | 'struktur' | 'berita' | 'kata-sambutan' | 'jumlahkk' | 'komentar' |'rtrw';
+type Menu = 'dashboard' | 'admin' | 'visi-misi' | 'struktur' | 'berita' | 'kata-sambutan' | 'jumlahkk' | 'komentar' | 'rtrw' | 'penduduk';
 
 const PanelAdminPage = () => {
   const router = useRouter();
@@ -88,14 +90,15 @@ const PanelAdminPage = () => {
 
   const menuItems = [
     { id: 'dashboard', label: 'Dashboard', icon: HomeIcon },
-    { id: 'admin', label: 'Admin', icon: UserGroupIcon },
+    { id: 'admin', label: 'Admin', icon: ShieldCheckIcon },
     { id: 'visi-misi', label: 'Visi Misi', icon: LightBulbIcon },
     { id: 'struktur', label: 'Struktur', icon: BuildingOfficeIcon },
     { id: 'berita', label: 'Berita', icon: NewspaperIcon },
     { id: 'kata-sambutan', label: 'Kata Sambutan', icon: MegaphoneIcon },
     { id: 'jumlahkk', label: 'Jumlah KK', icon: IdentificationIcon },
     { id: 'komentar', label: 'Komentar', icon: ChatBubbleLeftRightIcon },
-    { id: 'rtrw', label: 'RT dan RW', icon: UsersIcon },
+    { id: 'rtrw', label: 'RT dan RW', icon: MapIcon },
+    { id: 'penduduk', label: 'Penduduk', icon: UserGroupIcon },
   ];
 
   return (
@@ -182,9 +185,10 @@ const PanelAdminPage = () => {
           {activeMenu === 'jumlahkk' && <JumlahKKPage />}
           {activeMenu === 'komentar' && <KomentarPage />}
           {activeMenu === 'rtrw' && <RTRWPage />}
+          {activeMenu === 'penduduk' && <PendudukPage />}
 
           {/* Default: placeholder layout untuk menu lainnya */}
-          {!['struktur', 'berita', 'visi-misi', 'kata-sambutan', 'admin', 'dashboard', 'jumlahkk', 'komentar', 'rtrw'].includes(activeMenu) && (
+          {!['struktur', 'berita', 'visi-misi', 'kata-sambutan', 'admin', 'dashboard', 'jumlahkk', 'komentar', 'rtrw', 'penduduk'].includes(activeMenu) && (
             <div className="bg-white rounded-xl shadow-lg p-6 md:p-8 max-w-4xl">
               <div className="flex justify-between items-start mb-6">
                 <div>
