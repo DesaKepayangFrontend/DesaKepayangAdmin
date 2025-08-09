@@ -1,6 +1,7 @@
 import type { NextConfig } from "next";
 
-const nextConfig: NextConfig = {
+// next.config.ts
+const nextConfig = {
   images: {
     remotePatterns: [
       {
@@ -8,8 +9,14 @@ const nextConfig: NextConfig = {
         hostname: 'desakepayangbackend-production.up.railway.app',
         pathname: '/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'res.cloudinary.com', // ← domain cloudinary
+        pathname: '/**',
+      },
     ],
   },
-};
+}
 
-export default nextConfig;
+export default nextConfig
+
