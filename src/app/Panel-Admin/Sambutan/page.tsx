@@ -78,7 +78,7 @@ const SambutanPage = () => {
       nama_kepaladesa: item.NamaKepalaDesa,
       kata_sambutan: item.KataSambutan
     });
-    setFotoPreview(`https://desakepayangbackend-production.up.railway.app/${item.Foto}`);
+    setFotoPreview(item.Foto);
     setEditMode(true);
     setCurrentItem(item);
     setShowModal(true);
@@ -203,7 +203,7 @@ const SambutanPage = () => {
                         <td className="py-4 px-4">
                           <div className="w-16 h-16 relative">
                             <Image
-                              src={`https://desakepayangbackend-production.up.railway.app/${item.Foto}`}
+                              src={item.Foto}
                               alt={item.NamaKepalaDesa}
                               layout="fill"
                               objectFit="cover"
