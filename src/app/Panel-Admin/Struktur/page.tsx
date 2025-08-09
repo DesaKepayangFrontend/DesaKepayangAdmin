@@ -89,7 +89,7 @@ const StrukturDesaPage = () => {
       jabatan: item.Jabatan
     });
 
-    setFotoPreview(`https://desakepayangbackend-production.up.railway.app/${item.Foto}`);
+    setFotoPreview(item.Foto); // langsung URL dari Cloudinary
     setFotoFile(null);
 
     setEditMode(true);
@@ -239,7 +239,7 @@ const StrukturDesaPage = () => {
                         <td className="py-4 px-4">
                           <div className="w-16 h-16 relative">
                             <Image
-                              src={`https://desakepayangbackend-production.up.railway.app/${item.Foto}`}
+                              src={item.Foto}
                               alt={item.Nama}
                               layout="fill"
                               objectFit="cover"
