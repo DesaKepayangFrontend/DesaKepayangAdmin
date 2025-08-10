@@ -29,7 +29,7 @@ const RTRWPage = lazy(() => import('./RTRW/page'));
 const PendudukPage = lazy(() => import('./Penduduk/page'));
 const SearchPendudukPage = lazy(() => import('./Search/page'));
 
-type Menu = 'dashboard' | 'admin' | 'visi-misi' | 'struktur' | 'berita' | 'kata-sambutan' | 'jumlahkk' | 'komentar' | 'rtrw' | 'penduduk' |'search';
+type Menu = 'dashboard' | 'admin' | 'visi-misi' | 'struktur' | 'berita' | 'kata-sambutan' | 'jumlahkk' | 'komentar' | 'rtrw' | 'penduduk' | 'search';
 
 const PanelAdminPage = () => {
   const router = useRouter();
@@ -53,16 +53,17 @@ const PanelAdminPage = () => {
     const socket = new WebSocket("wss://desakepayangbackend-production.up.railway.app/ws");
 
     socket.onopen = () => {
-      console.log("✅ Connected");
+      // Kirim pesan awal tanpa log
       socket.send("Halo dari frontend");
     };
 
     socket.onmessage = (event) => {
-      console.log("📢 Pesan dari server:", event.data);
+      // Bisa proses data di sini tanpa log
+      // contoh: handleMessage(event.data)
     };
 
     socket.onclose = () => {
-      console.log("❌ Disconnected");
+      // Tutup koneksi tanpa log
     };
 
     return () => socket.close();
