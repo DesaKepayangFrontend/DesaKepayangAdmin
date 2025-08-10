@@ -69,27 +69,28 @@ export default function AdminLogin() {
   };
 
   useEffect(() => {
-  const checkSession = async () => {
-    try {
-      const res = await fetch(
-        'https://desakepayangbackend-production.up.railway.app/admin/me',
-        {
+    const token = localStorage.getItem('token');
+    if (!token) return; // Skip kalau belum login
+
+    const checkSession = async () => {
+      try {
+        const res = await fetch('https://desakepayangbackend-production.up.railway.app/admin/me', {
           credentials: 'include',
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+
+        if (res.ok) {
+          router.push('/Panel-Admin');
         }
-      );
-
-      if (res.ok) {
-        router.push('/Panel-Admin');
+      } catch (error) {
+        // Diam saja atau handle silent
       }
-      // Tidak ada console.log untuk error response
-    } catch (error) {
-      // Jangan tampilkan error di console
-      // Bisa tambahkan log internal kalau mau debugging
-    }
-  };
+    };
 
-  checkSession();
-}, [router]);
+    checkSession();
+  }, [router]);
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center p-4">
