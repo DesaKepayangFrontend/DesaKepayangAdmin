@@ -69,19 +69,27 @@ export default function AdminLogin() {
   };
 
   useEffect(() => {
-    const checkSession = async () => {
-      const res = await fetch('https://desakepayangbackend-production.up.railway.app/admin/me', {
-        credentials: 'include',
-      });
+  const checkSession = async () => {
+    try {
+      const res = await fetch(
+        'https://desakepayangbackend-production.up.railway.app/admin/me',
+        {
+          credentials: 'include',
+        }
+      );
 
       if (res.ok) {
         router.push('/Panel-Admin');
       }
-      // Jangan tampilkan console.log atau error saat gagal
-    };
+      // Tidak ada console.log untuk error response
+    } catch (error) {
+      // Jangan tampilkan error di console
+      // Bisa tambahkan log internal kalau mau debugging
+    }
+  };
 
-    checkSession();
-  }, []);
+  checkSession();
+}, [router]);
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center p-4">
