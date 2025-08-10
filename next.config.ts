@@ -1,7 +1,7 @@
-import type { NextConfig } from "next";
-
 // next.config.ts
-const nextConfig = {
+import type { NextConfig } from 'next'
+
+const nextConfig: NextConfig = {
   images: {
     remotePatterns: [
       {
@@ -16,7 +16,11 @@ const nextConfig = {
       },
     ],
   },
+
+  // Hilangkan console.log di production
+  compiler: {
+    removeConsole: true,
+  },
 }
 
 export default nextConfig
-

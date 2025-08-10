@@ -12,7 +12,8 @@ import {
   IdentificationIcon,
   MegaphoneIcon,
   ShieldCheckIcon,
-  MapIcon
+  MapIcon,
+  MagnifyingGlassIcon
 } from '@heroicons/react/24/outline';
 
 // Lazy load halaman
@@ -26,8 +27,9 @@ const JumlahKKPage = lazy(() => import('./JumlahKK/page'));
 const KomentarPage = lazy(() => import('./Komentar/page'));
 const RTRWPage = lazy(() => import('./RTRW/page'));
 const PendudukPage = lazy(() => import('./Penduduk/page'));
+const SearchPendudukPage = lazy(() => import('./Search/page'));
 
-type Menu = 'dashboard' | 'admin' | 'visi-misi' | 'struktur' | 'berita' | 'kata-sambutan' | 'jumlahkk' | 'komentar' | 'rtrw' | 'penduduk';
+type Menu = 'dashboard' | 'admin' | 'visi-misi' | 'struktur' | 'berita' | 'kata-sambutan' | 'jumlahkk' | 'komentar' | 'rtrw' | 'penduduk' |'search';
 
 const PanelAdminPage = () => {
   const router = useRouter();
@@ -99,6 +101,7 @@ const PanelAdminPage = () => {
     { id: 'komentar', label: 'Komentar', icon: ChatBubbleLeftRightIcon },
     { id: 'rtrw', label: 'RT dan RW', icon: MapIcon },
     { id: 'penduduk', label: 'Penduduk', icon: UserGroupIcon },
+    { id: 'search', label: 'Search Penduduk', icon: MagnifyingGlassIcon },
   ];
 
   return (
@@ -186,9 +189,10 @@ const PanelAdminPage = () => {
           {activeMenu === 'komentar' && <KomentarPage />}
           {activeMenu === 'rtrw' && <RTRWPage />}
           {activeMenu === 'penduduk' && <PendudukPage />}
+          {activeMenu === 'search' && <SearchPendudukPage />}
 
           {/* Default: placeholder layout untuk menu lainnya */}
-          {!['struktur', 'berita', 'visi-misi', 'kata-sambutan', 'admin', 'dashboard', 'jumlahkk', 'komentar', 'rtrw', 'penduduk'].includes(activeMenu) && (
+          {!['struktur', 'berita', 'visi-misi', 'kata-sambutan', 'admin', 'dashboard', 'jumlahkk', 'komentar', 'rtrw', 'penduduk', 'search'].includes(activeMenu) && (
             <div className="bg-white rounded-xl shadow-lg p-6 md:p-8 max-w-4xl">
               <div className="flex justify-between items-start mb-6">
                 <div>
