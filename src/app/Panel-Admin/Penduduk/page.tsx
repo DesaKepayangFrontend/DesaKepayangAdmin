@@ -97,6 +97,7 @@ const PendudukPage = () => {
 
     const openCreateModal = () => {
         setFormData({ id_rtrw: '', nama: '', agama: '', gender: '' });
+        setSelectedGender(''); // Reset pilihan gender
         setEditMode(false);
         setCurrentPenduduk(null);
         setShowModal(true);
@@ -116,6 +117,13 @@ const PendudukPage = () => {
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
+
+        // Validasi semua field harus diisi
+        if (!formData.id_rtrw || !formData.nama.trim() || !formData.agama || !formData.gender) {
+            setError('Semua field wajib diisi!');
+            return;
+        }
+
         try {
             const token = localStorage.getItem('token');
             const url = editMode && currentPenduduk
@@ -289,14 +297,14 @@ const PendudukPage = () => {
                                     <label className="block text-gray-700 text-sm font-medium mb-2" htmlFor="id_rtrw">
                                         RT/RW
                                     </label>
-                                    
+
                                     <Listbox value={formData.id_rtrw} onChange={(value) => setFormData(prev => ({ ...prev, id_rtrw: value }))}>
                                         {({ open }) => (
                                             <div className="relative">
                                                 <Listbox.Button className="relative w-full px-3 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all text-gray-600 bg-white text-left flex items-center justify-between">
                                                     <span className="block truncate">
-                                                        {formData.id_rtrw 
-                                                            ? (rtrwList.find(rtrw => rtrw.id_rtrw.toString() === formData.id_rtrw) 
+                                                        {formData.id_rtrw
+                                                            ? (rtrwList.find(rtrw => rtrw.id_rtrw.toString() === formData.id_rtrw)
                                                                 ? `${rtrwList.find(rtrw => rtrw.id_rtrw.toString() === formData.id_rtrw)?.rt} / ${rtrwList.find(rtrw => rtrw.id_rtrw.toString() === formData.id_rtrw)?.rw}`
                                                                 : 'Pilih RT/RW')
                                                             : 'Pilih RT/RW'}
@@ -375,7 +383,7 @@ const PendudukPage = () => {
                                     <label className="block text-gray-700 text-sm font-medium mb-2" htmlFor="agama">
                                         Agama
                                     </label>
-                                    
+
                                     <Listbox value={formData.agama} onChange={(value) => setFormData(prev => ({ ...prev, agama: value }))}>
                                         {({ open }) => (
                                             <div className="relative">
