@@ -9,7 +9,7 @@ import {
   BuildingOfficeIcon,
   NewspaperIcon,
   ChatBubbleLeftRightIcon,
-  IdentificationIcon,
+  ChartBarIcon,
   MegaphoneIcon,
   ShieldCheckIcon,
   MapIcon,
@@ -23,13 +23,13 @@ const VisiMisiPage = lazy(() => import('./VisiMisi/page'));
 const SambutanPage = lazy(() => import('./Sambutan/page'));
 const AdminPage = lazy(() => import('./Admin/page'));
 const AdminProfile = lazy(() => import('./Profile/page'));
-const JumlahKKPage = lazy(() => import('./JumlahKK/page'));
+const InfoDesa = lazy(() => import('./InfoDesa/page'));
 const KomentarPage = lazy(() => import('./Komentar/page'));
 const RTRWPage = lazy(() => import('./RTRW/page'));
 const PendudukPage = lazy(() => import('./Penduduk/page'));
 const SearchPendudukPage = lazy(() => import('./Search/page'));
 
-type Menu = 'dashboard' | 'admin' | 'visi-misi' | 'struktur' | 'berita' | 'kata-sambutan' | 'jumlahkk' | 'komentar' | 'rtrw' | 'penduduk' | 'search';
+type Menu = 'dashboard' | 'admin' | 'visi-misi' | 'struktur' | 'berita' | 'kata-sambutan' | 'infodesa' | 'komentar' | 'rtrw' | 'penduduk' | 'search';
 
 const PanelAdminPage = () => {
   const router = useRouter();
@@ -98,7 +98,7 @@ const PanelAdminPage = () => {
     { id: 'struktur', label: 'Struktur', icon: BuildingOfficeIcon },
     { id: 'berita', label: 'Berita', icon: NewspaperIcon },
     { id: 'kata-sambutan', label: 'Kata Sambutan', icon: MegaphoneIcon },
-    { id: 'jumlahkk', label: 'Jumlah KK', icon: IdentificationIcon },
+    { id: 'infodesa', label: 'Info Desa', icon: ChartBarIcon },
     { id: 'komentar', label: 'Komentar', icon: ChatBubbleLeftRightIcon },
     { id: 'rtrw', label: 'RT dan RW', icon: MapIcon },
     { id: 'penduduk', label: 'Penduduk', icon: UserGroupIcon },
@@ -186,14 +186,14 @@ const PanelAdminPage = () => {
           {activeMenu === 'kata-sambutan' && <SambutanPage />}
           {activeMenu === 'admin' && <AdminPage />}
           {activeMenu === 'dashboard' && <AdminProfile />}
-          {activeMenu === 'jumlahkk' && <JumlahKKPage />}
+          {activeMenu === 'infodesa' && <InfoDesa />}
           {activeMenu === 'komentar' && <KomentarPage />}
           {activeMenu === 'rtrw' && <RTRWPage />}
           {activeMenu === 'penduduk' && <PendudukPage />}
           {activeMenu === 'search' && <SearchPendudukPage />}
 
           {/* Default: placeholder layout untuk menu lainnya */}
-          {!['struktur', 'berita', 'visi-misi', 'kata-sambutan', 'admin', 'dashboard', 'jumlahkk', 'komentar', 'rtrw', 'penduduk', 'search'].includes(activeMenu) && (
+          {!['struktur', 'berita', 'visi-misi', 'kata-sambutan', 'admin', 'dashboard', 'infodesa', 'komentar', 'rtrw', 'penduduk', 'search'].includes(activeMenu) && (
             <div className="bg-white rounded-xl shadow-lg p-6 md:p-8 max-w-4xl">
               <div className="flex justify-between items-start mb-6">
                 <div>
